@@ -1,3 +1,4 @@
+import SkillCategories from "./SkillCategories";
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -64,7 +65,6 @@ export default function App() {
     const defaultTarget = storageService.getTargetCareer();
     const defaultProgress = storageService.getRoadmapProgress();
     const defaultProfile = storageService.getUserProfile();
-
     setUserSkills(defaultSkills);
     setTargetCareerId(defaultTarget);
     setRoadmapProgress(defaultProgress);
@@ -90,11 +90,15 @@ export default function App() {
 
       {/* Main Content View Switcher */}
       <main className="flex-1">
-        {activePage === 'home' && (
-          <HomePage
-            onNavigate={handleNavigate}
-            userSkillsCount={userSkills.length}
-          />
+  {activePage === 'home' && (
+    <>
+      <HomePage
+        onNavigate={handleNavigate}
+        userSkillsCount={userSkills.length}
+      />
+
+      <SkillCategories />
+    </>
         )}
 
         {activePage === 'dashboard' && (
